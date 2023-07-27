@@ -6,7 +6,7 @@ app =Flask(__name__)
 
 db = sqlite3.connect("store.db", check_same_thread=False)
 cur = db.cursor()
-
+#configure session
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
@@ -15,3 +15,9 @@ Session(app)
 def index():
     books=cur.execute("SELECT * FROM books")
     return render_template("books.html", books=books)
+
+@app.route("/cart")
+def cart():
+    if "cart" not in session:
+        session["cart"] = []
+        
