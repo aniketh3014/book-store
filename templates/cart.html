@@ -1,0 +1,8 @@
+{% extendes "layout.html" %}
+{% block body %}
+    <h1>Cart</h1>
+    <ol>
+        {% for book in books}
+            <li> {{ book["title"] }}</li>
+        {% endblock %}
+    </ol>
